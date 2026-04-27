@@ -1,13 +1,13 @@
-package com.ecommerce.ecommerce_platform;
+package com.ecommerce.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EcommercePlatformApplication {
+public class UserServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EcommercePlatformApplication.class, args);
+		SpringApplication.run(UserServiceApplication.class, args);
 	}
 
 }
