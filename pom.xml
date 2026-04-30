@@ -21,7 +21,6 @@
 		<module>notification-service</module>
 		<module>inventory-service</module>
 		<module>payment-service</module>
-		<module>api-gateway</module>
 		<module>eureka-server</module>
 	</modules>
 	<properties>
