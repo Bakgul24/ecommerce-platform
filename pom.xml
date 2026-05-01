@@ -22,6 +22,7 @@
 		<module>inventory-service</module>
 		<module>payment-service</module>
 		<module>eureka-server</module>
+		<module>api-gateway</module>
 	</modules>
 	<properties>
 		<java.version>17</java.version>
