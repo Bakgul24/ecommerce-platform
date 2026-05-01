@@ -1,4 +1,3 @@
-
 services:
 
   postgres:
@@ -58,6 +57,7 @@ services:
   kafka:
     image: confluentinc/cp-kafka:7.5.0
     container_name: ecommerce-kafka
+    restart: always
     depends_on:
       - zookeeper
     ports:
@@ -84,9 +84,19 @@ services:
     networks:
       - ecommerce-network
 
+  config-server:
+    build: ./config-server
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    networks:
+      - ecommerce-network
+
   eureka-server:
     build: ./eureka-server
     container_name: eureka-server
+    depends_on:
+      - config-server
     ports:
       - "8761:8761"
     networks:
@@ -95,21 +105,23 @@ services:
   api-gateway:
     build: ./api-gateway
     container_name: api-gateway
-    ports:
-      - "8080:8080"
     depends_on:
       - eureka-server
+      - config-server
+    ports:
+      - "8080:8080"
     networks:
       - ecommerce-network
 
   user-service:
     build: ./user-service
     container_name: user-service
-    ports:
-      - "8081:8081"
     depends_on:
       - eureka-server
       - postgres
+      - config-server
+    ports:
+      - "8081:8081"
     networks:
       - ecommerce-network
 
@@ -119,6 +131,10 @@ services:
     depends_on:
       - eureka-server
       - mongodb
+      - redis
+      - config-server
+    ports:
+      - "8082:8082"
     networks:
       - ecommerce-network
 
@@ -129,6 +145,47 @@ services:
       - eureka-server
       - kafka
       - postgres
+      - config-server
+    ports:
+      - "8083:8083"
+    networks:
+      - ecommerce-network
+
+  payment-service:
+    build: ./payment-service
+    container_name: payment-service
+    depends_on:
+      - eureka-server
+      - kafka
+      - postgres
+      - config-server
+    ports:
+      - "8084:8084"
+    networks:
+      - ecommerce-network
+
+  inventory-service:
+    build: ./inventory-service
+    container_name: inventory-service
+    depends_on:
+      - eureka-server
+      - kafka
+      - mongodb
+      - config-server
+    ports:
+      - "8085:8085"
+    networks:
+      - ecommerce-network
+
+  notification-service:
+    build: ./notification-service
+    container_name: notification-service
+    depends_on:
+      - eureka-server
+      - kafka
+      - config-server
+    ports:
+      - "8086:8086"
     networks:
       - ecommerce-network
 

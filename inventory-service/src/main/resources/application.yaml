@@ -1,25 +1,5 @@
-server:
-  port: 8085
-
 spring:
   application:
-    name: inventory-service
-
-  data:
-    mongodb:
-      uri: mongodb://ecommerce:ecommerce123@localhost:27017/inventorydb?authSource=admin
-
-  kafka:
-    bootstrap-servers: localhost:9092
-    consumer:
-      group-id: inventory-group
-      auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    prefer-ip-address: true
+    name: inventory-server
+  config:
+    import: optional:configserver:http://config-server:8888
