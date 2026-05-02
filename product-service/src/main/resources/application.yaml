@@ -1,5 +1,5 @@
 spring:
   application:
-    name: product-server
+    name: product-service
   config:
     import: optional:configserver:http://config-server:8888
