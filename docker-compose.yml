@@ -84,6 +84,14 @@ services:
     networks:
       - ecommerce-network
 
+  config-server:
+    build: ./config-server
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    networks:
+      - ecommerce-network
+
   eureka-server:
     build: ./eureka-server
     container_name: eureka-server
