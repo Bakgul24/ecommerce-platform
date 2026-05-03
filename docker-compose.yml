@@ -84,19 +84,9 @@ services:
     networks:
       - ecommerce-network
 
-  config-server:
-    build: ./config-server
-    container_name: config-server
-    ports:
-      - "8888:8888"
-    networks:
-      - ecommerce-network
-
   eureka-server:
     build: ./eureka-server
     container_name: eureka-server
-    depends_on:
-      - config-server
     ports:
       - "8761:8761"
     networks:
@@ -109,7 +99,6 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
     depends_on:
       - eureka-server
-      - config-server
     ports:
       - "8080:8080"
     networks:
@@ -121,7 +110,6 @@ services:
     depends_on:
       - eureka-server
       - postgres
-      - config-server
     ports:
       - "8081:8081"
     networks:
@@ -134,7 +122,6 @@ services:
       - eureka-server
       - mongodb
       - redis
-      - config-server
     ports:
       - "8082:8082"
     networks:
@@ -147,7 +134,6 @@ services:
       - eureka-server
       - kafka
       - postgres
-      - config-server
     ports:
       - "8083:8083"
     networks:
@@ -160,7 +146,6 @@ services:
       - eureka-server
       - kafka
       - postgres
-      - config-server
     ports:
       - "8084:8084"
     networks:
@@ -173,7 +158,6 @@ services:
       - eureka-server
       - kafka
       - mongodb
-      - config-server
     ports:
       - "8085:8085"
     networks:
@@ -185,7 +169,6 @@ services:
     depends_on:
       - eureka-server
       - kafka
-      - config-server
     ports:
       - "8086:8086"
     networks:
