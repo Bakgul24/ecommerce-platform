@@ -32,9 +32,9 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
-    @GetMapping("/category/{category}")
-    public ResponseEntity<List<ProductResponse>> getProductsByCategory(@PathVariable String category) {
-        return ResponseEntity.ok(productService.getProductsByCategory(category));
+    @GetMapping("/category/{slug}")
+    public ResponseEntity<List<ProductResponse>> getProductsByCategorySlug(@PathVariable String slug) {
+        return ResponseEntity.ok(productService.getProductsByCategorySlug(slug));
     }
 
     @PutMapping("/{id}")

@@ -95,8 +95,6 @@ services:
   api-gateway:
     build: ./api-gateway
     container_name: api-gateway
-    environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
     depends_on:
       - eureka-server
     ports:
@@ -171,6 +169,18 @@ services:
       - kafka
     ports:
       - "8086:8086"
+    networks:
+      - ecommerce-network
+
+  category-service:
+    build: ./category-service
+    container_name: category-service
+    depends_on:
+      - eureka-server
+      - mongodb
+      - redis
+    ports:
+      - "8087:8087"
     networks:
       - ecommerce-network
 

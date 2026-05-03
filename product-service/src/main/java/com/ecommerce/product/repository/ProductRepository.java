@@ -9,9 +9,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends MongoRepository<Product, String> {
 
-    List<Product> findByCategory(String category);
-
     List<Product> findByActiveTrue();
 
-    List<Product> findByCategoryAndActiveTrue(String category);
+    List<Product> findByCategoryIdAndActiveTrue(String categoryId);
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.math.BigDecimal;
 import java.util.Map;
 
-@FeignClient(name = "product-service", url = "http://localhost:8082")
+@FeignClient(name = "product-service")
 public interface ProductClient {
 
     @GetMapping("/api/products/{id}")

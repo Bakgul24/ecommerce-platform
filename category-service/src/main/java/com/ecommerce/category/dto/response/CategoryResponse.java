@@ -1,28 +1,24 @@
-package com.ecommerce.product.dto.response;
+package com.ecommerce.category.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductResponse {
+public class CategoryResponse {
     private String id;
     private String name;
     private String description;
-    private BigDecimal price;
-    private String categoryId;
-    private String categoryName;
-    private String categorySlug;
-    private Integer stock;
-    private Map<String, Object> attributes;
+    private String slug;
+    private String parentId;
     private boolean active;
     private LocalDateTime createdAt;
+    private List<CategoryResponse> subCategories;
 }

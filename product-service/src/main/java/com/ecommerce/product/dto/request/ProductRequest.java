@@ -10,7 +10,7 @@ public class ProductRequest {
     private String name;
     private String description;
     private BigDecimal price;
-    private String category;
+    private String categoryId;
     private Integer stock;
     private Map<String, Object> attributes;
 }
